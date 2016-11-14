@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script
+  src="https://code.jquery.com/jquery-3.1.1.js"
+  integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+  crossorigin="anonymous"></script>
+</head>
+<body>
+	
+	<div id="videoContainer">
+	    <video>
+			<source src="http://clips.vorwaerts-gmbh.de/VfE_html5.mp4" type="video/mp4">
+			<source src="http://clips.vorwaerts-gmbh.de/VfE.webm" type="video/webm">
+			<source src="http://clips.vorwaerts-gmbh.de/VfE.ogv" type="video/ogg">
+	    </video>
+      	<div> custom controls 
+            <button>play/pause</button>
+            <button id="fullscreenBtn" class="enterFullscreenBtn">fullscreen</button>
+      	</div>
+	</div>
+
+	<script>
+	console.log('cideoCustomBt start script')
+		var $video= $('video');
+		//fullscreen button clicked
+		$('#fullscreenBtn').on('click', function() {
+			debugger
+			$(this).toggleClass('enterFullscreenBtn');
+		    if($.isFunction($video.get(0).webkitEnterFullscreen)) {
+		              if($(this).hasClass("enterFullscreenBtn"))
+		                  document.getElementById('videoContainer').webkitRequestFullScreen();                          
+		              else 
+		              document.webkitCancelFullScreen();    
+		    }  
+		    else if ($.isFunction($video.get(0).mozRequestFullScreen)) {
+		              if($(this).hasClass("enterFullscreenBtn"))
+		                  document.getElementById('videoContainer').mozRequestFullScreen(); 
+		               else 
+		                  document.mozCancelFullScreen();   
+		    }
+		    else { 
+		           alert('Your browsers doesn\'t support fullscreen');
+		    }
+		});
+		console.log('cideoCustomBt end script')
+	</script>
+</body>
+</html>
+
